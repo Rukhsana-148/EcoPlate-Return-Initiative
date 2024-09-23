@@ -267,6 +267,8 @@
       <!--
         - #PRODUCT SECTION
       -->
+       
+
 
       <section class="product" id="menu">
 
@@ -291,6 +293,46 @@
 
                 <div class="wrapper">
                   <h3 class="product-name">{{$food->name}}</h3>
+
+      @php 
+      $foodCount = $riceCount =  0;
+    @endphp
+
+   @foreach($buyP as $item)
+   @if($foodCount==1)
+   @php 
+   break;
+   @endphp
+     
+@elseif($item->food->name=='Beef Burger')
+@php
+   $foodCount++;
+   @endphp
+
+ @endif              
+    @endforeach
+   @foreach($buyP as $item)
+      @if($riceCount==1)
+        @php break;
+        @endphp
+          
+     @elseif($item->food->name=='Fried Rice')
+     @php
+        $riceCount++;
+        @endphp
+   
+      @endif
+   @endforeach
+@if($food->name=='Egg Burger')
+@if($foodCount==1 && $riceCount==1)
+<p class="font-bold text-sm text-orange-500">You will Free This Items</p>
+@else
+<p>COndition is not fillup.</p>
+{{$foodCount}}-{{$riceCount}}
+
+@endif
+@endif
+ 
                   @if($food->buy=='' && $food->offerType!='')
                   <p class="line-through px-[16px] py-1 rounded-md mt-2 text-yellow-700 font-semibold">
                    {{$food->price}} Tk.

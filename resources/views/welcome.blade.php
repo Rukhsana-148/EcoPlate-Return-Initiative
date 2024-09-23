@@ -391,16 +391,16 @@
         @foreach($foods as $food)
           <a href="#">
 
-            <div class="product-card">
+            <div class="product-card bg-slate-300 shadow-lg">
 
               <div class="img-box">
                 <img src="uploadimage\{{$food->image}}" alt="product image" class="product-img"  loading="lazy" style="width:300px; height:300px">
               </div>
 
-              <div class="product-content">
+              <div class="product-content ml-6">
 
                 <div class="wrapper">
-                  <h3 class="product-name">{{$food->name}}</h3>
+                  <h3 class="product-name -ml-10">{{$food->name}}</h3>
                   @if($food->buy=='' && $food->offerType!='')
                   <p class="product-price line-through px-[26px] py-1 rounded-md mt-2 text-yellow-700 ">
                    {{$food->price}} Tk.
@@ -418,14 +418,14 @@
    @php
    $price = ($food->price*(100-$food->offer))/100;
    @endphp
-    <p class="">Discount: {{$food->offer}}% <br/><span class="text-orange-500 text-lg"> Price : {{$price}}<span></p>
+    <p class="text-xl font-semibold ">Discount: {{$food->offer}}% <br/><span class="text-orange-500 text-lg"> Price : {{$price}}<span></p>
    @elseif($food->offerType=='numeric' && $food->buy=='')
    @php 
       $price = ($food->price-$food->offer);
    @endphp
    <p class="">Discount: {{$food->offer}} Taka <br/><span class="text-orange-500 text-lg"> Price : {{$price}}</span></p>
    @elseif($food->buy!='')
-   <button class="bg-yellow-500 text-white px-5 ml-2  mt-2 py-2 text-[15px] rounded-md">Buy {{$food->buy}} Get {{$food->get}}</button>
+   <button class="bg-yellow-500 text-white px-5 -ml-5  mt-2 py-2 text-[15px] rounded-md">Buy {{$food->buy}} Get {{$food->get}}</button>
   @else
 
    <p class=""></p>

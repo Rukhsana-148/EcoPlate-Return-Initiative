@@ -12,10 +12,9 @@ class Food extends Model
     {
         return $this->hasMany(Cart::class);
     }
-
-    public function sells()
+ public function sells()
     {
-        return $this->hasMany(Sell::class);
+        return $this->hasMany(Sell::class, 'foodId');
     }
 
 }

@@ -31,8 +31,12 @@ class NewController extends Controller
             $sellP = Sell::where('createId', $userId)->with('food')->get();
 
             if($userType=='user'){
-                
-                return view('user.home', compact('foods','buyP','cartItems', 'userId', 'productCount'));
+ $foodPurchases = Sell::select('foodId', 'buyId', DB::raw('COUNT(*) as purchase_count'))
+            ->groupBy('foodId', 'buyId')
+            ->with(['food', 'user'])
+            ->get();
+
+                return view('user.home', compact('foods','buyP','foodPurchases','cartItems', 'userId', 'productCount'));
                 
             }else{
                 $foodItems = Food::where('createId', $userId)->get();
